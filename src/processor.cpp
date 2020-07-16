@@ -36,15 +36,14 @@ Processor::Utilization()
 		  softirq >> steal >> guest >> guest_nice;
 	}
 	double PrevIdle = previdle + previowait;
-	double Idle	  = idle + iowait;
+	double Idle		= idle + iowait;
 	double PrevNonIdle =
 	  prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal;
-	double NonIdle		= user + nice + system + irq + softirq + steal;
-	double PrevTotal		= PrevIdle + PrevNonIdle;
-	double Total			= Idle + NonIdle;
-	double totald			= Total - PrevTotal;
-	double idled			= Idle - PrevIdle;
+	double NonIdle		  = user + nice + system + irq + softirq + steal;
+	double PrevTotal	  = PrevIdle + PrevNonIdle;
+	double Total		  = Idle + NonIdle;
+	double totald		  = Total - PrevTotal;
+	double idled		  = Idle - PrevIdle;
 	double CPU_Percentage = (totald - idled) / totald;
-	std::cout << CPU_Percentage << "\n";
 	return CPU_Percentage;
 }
