@@ -75,7 +75,7 @@ LinuxParser::Pids()
 	return pids;
 }
 
-// TODO: Read and return the system memory utilization
+// DONE: Read and return the system memory utilization
 float
 LinuxParser::MemoryUtilization()
 {
@@ -93,7 +93,7 @@ LinuxParser::MemoryUtilization()
 				memory_free = n_memory;
 		}
 	}
-	return ((total_memory - memory_free) / total_memory);
+	return (total_memory - memory_free) / total_memory;
 }
 
 // DONE: Read and return the system uptime
@@ -147,7 +147,7 @@ LinuxParser::CpuUtilization()
 	return {};
 }
 
-// TODO: Read and return the total number of processes
+// DONE: Read and return the total number of processes
 int
 LinuxParser::TotalProcesses()
 {
@@ -166,7 +166,7 @@ LinuxParser::TotalProcesses()
 	return n_proc;
 }
 
-// TODO: Read and return the number of running processes
+// DONE: Read and return the number of running processes
 int
 LinuxParser::RunningProcesses()
 {
