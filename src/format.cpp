@@ -21,8 +21,7 @@ Format::ElapsedTime(long seconds [[maybe_unused]])
 	seconds = seconds % 60;
 	s		= seconds;
 	std::stringstream ss;
-	ss << setw(2) << setfill('0') << h << ":" << setw(2) << setfill('0') << m
-	   << ":" << setw(2) << setfill('0') << s;
+	ss << setw(2) << h << ":" << setw(2) << m << ":" << setw(2) << s;
 
 	return ss.str();
 }
