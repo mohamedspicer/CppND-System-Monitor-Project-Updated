@@ -10,7 +10,7 @@ using std::string;
 float
 Processor::Utilization()
 {
-	string cpu;
+	string cpu, prevcpu;
 	string line;
 	long user, nice, system, idle, iowait, irq, softirq, steal, guest,
 	  guest_nice;
@@ -26,7 +26,7 @@ Processor::Utilization()
 		  prevsoftirq >> prevsteal >> prevguest >> prevguest_nice;
 	}
 	usleep(5000);
-	std::ifstream stream(LinuxParser::kProcDirectory +
+	stream(LinuxParser::kProcDirectory +
 						 LinuxParser::kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
