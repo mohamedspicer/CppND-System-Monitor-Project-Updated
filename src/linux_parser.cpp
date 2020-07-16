@@ -81,7 +81,7 @@ LinuxParser::MemoryUtilization()
 	return 0.0;
 }
 
-// TODO: Read and return the system uptime
+// DONE: Read and return the system uptime
 long
 LinuxParser::UpTime()
 {
@@ -143,7 +143,17 @@ LinuxParser::TotalProcesses()
 int
 LinuxParser::RunningProcesses()
 {
-	return 0;
+	string proc_running, n_proc;
+	string line;
+	std::ifstream stream(kProcDirectory + kStatFilename);
+	if (stream.is_open()) {
+		std::getline(stream, line);
+		std::istringstream linestream(line);
+		linestream >> proc_running >> n_proc ;
+		if (proc_running == "procs_running")
+			return stoi(n_proc);
+	}
+	return stoi(n_proc);
 }
 
 // TODO: Read and return the command associated with a process
