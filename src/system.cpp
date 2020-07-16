@@ -32,7 +32,7 @@ System::Processes()
 std::string
 System::Kernel()
 {
-	return string();
+	return LinuxParser::Kernel();
 }
 
 // TODO: Return the system's memory utilization
