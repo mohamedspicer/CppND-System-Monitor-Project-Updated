@@ -10,7 +10,7 @@ using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
-using std::stoi;
+using std::stol;
 
 // DONE: An example of how to read data from the filesystem
 string
@@ -93,7 +93,7 @@ LinuxParser::UpTime()
 		std::istringstream linestream(line);
 		linestream >> uptime >> uptime_idle ;
 	}
-	return stoi(uptime);
+	return stol(uptime);
 }
 
 // TODO: Read and return the number of jiffies for the system
