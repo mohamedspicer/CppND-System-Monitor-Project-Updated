@@ -53,7 +53,7 @@ System::OperatingSystem()
 int
 System::RunningProcesses()
 {
-	return 0;
+	return LinuxParser::UpTime();
 }
 
 // TODO: Return the total number of processes on the system
