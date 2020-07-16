@@ -92,7 +92,7 @@ LinuxParser::MemoryUtilization()
 		if (memory == "MemFree:")
 			memory_free = n_memory;
 	}
-	std::cout << total_memory << memory_free "\n";
+	std::cout << total_memory << memory_free << "\n";
 	return ((total_memory - memory_free) / total_memory);
 }
 
