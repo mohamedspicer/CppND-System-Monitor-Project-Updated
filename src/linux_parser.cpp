@@ -177,8 +177,8 @@ LinuxParser::RunningProcesses()
 	if (stream.is_open()) {
 		while (std::getline(stream, line)){
 			std::istringstream linestream(line);
-			linestream >> total_process >> n_proc;
-			if (total_process == "procs_running")
+			linestream >> proc_running >> n_proc;
+			if (proc_running == "procs_running")
 				return n_proc;
 		}
 	}
