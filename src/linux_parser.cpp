@@ -7,11 +7,11 @@
 #include "linux_parser.h"
 using std::stof;
 
+using std::stoi;
+using std::stol;
 using std::string;
 using std::to_string;
 using std::vector;
-using std::stol;
-
 // DONE: An example of how to read data from the filesystem
 string
 LinuxParser::OperatingSystem()
@@ -91,7 +91,7 @@ LinuxParser::UpTime()
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> uptime >> uptime_idle ;
+		linestream >> uptime >> uptime_idle;
 	}
 	return stol(uptime);
 }
@@ -136,7 +136,17 @@ LinuxParser::CpuUtilization()
 int
 LinuxParser::TotalProcesses()
 {
-	return 0;
+	string total_process, n_proc;
+	string line;
+	std::ifstream stream(kProcDirectory + kStatFilename);
+	if (stream.is_open()) {
+		std::getline(stream, line);
+		std::istringstream linestream(line);
+		linestream >> total_process >> n_proc;
+		if (total_process == "processes")
+			return stoi(n_proc);
+	}
+	return stoi(n_proc);
 }
 
 // TODO: Read and return the number of running processes
@@ -149,7 +159,7 @@ LinuxParser::RunningProcesses()
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> proc_running >> n_proc ;
+		linestream >> proc_running >> n_proc;
 		if (proc_running == "procs_running")
 			return stoi(n_proc);
 	}
