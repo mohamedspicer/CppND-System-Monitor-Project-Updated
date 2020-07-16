@@ -27,6 +27,7 @@ Processor::Utilization()
 	}
 	stream.close();
 	usleep(5000);
+	stream.open()
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
