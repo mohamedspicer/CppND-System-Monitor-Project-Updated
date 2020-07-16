@@ -25,9 +25,8 @@ Processor::Utilization()
 		linestream >> prevcpu >> prevuser >> prevnice >> prevsystem >> previdle >> previowait >> previrq >>
 		  prevsoftirq >> prevsteal >> prevguest >> prevguest_nice;
 	}
+	stream.close();
 	usleep(5000);
-	stream(LinuxParser::kProcDirectory +
-						 LinuxParser::kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
