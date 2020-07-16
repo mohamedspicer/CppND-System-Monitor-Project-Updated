@@ -4,6 +4,7 @@
 #include "format.h"
 
 using std::string;
+using std::format;
 // TODO: Complete this helper function
 // INPUT: Long int measuring seconds
 // OUTPUT: HH:MM:SS
@@ -17,6 +18,6 @@ Format::ElapsedTime(long seconds [[maybe_unused]])
 	m		 = seconds / 60;
 	seconds	 = seconds % 60;
 	s		 = seconds;
-	string ss = str(format("%2% %2% %1%\n") % "world" % "hello");
+	string ss = format("{}:{}:{}", h, m, s);
 	return ss;
 }
