@@ -136,34 +136,36 @@ LinuxParser::CpuUtilization()
 int
 LinuxParser::TotalProcesses()
 {
-	string total_process, n_proc;
+	string total_process;
+	int n_proc;
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> total_process >> n_proc;
+		linestream >> total_process;
 		if (total_process == "processes")
-			return stoi(n_proc);
+			linestream >> n_proc;
 	}
-	return stoi(n_proc);
+	return n_proc;
 }
 
 // TODO: Read and return the number of running processes
 int
 LinuxParser::RunningProcesses()
 {
-	string proc_running, n_proc;
+	string proc_running;
+	int n_proc;
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> proc_running >> n_proc;
+		linestream >> proc_running;
 		if (proc_running == "procs_running")
-			return stoi(n_proc);
+			linestream >> n_proc;
 	}
-	return stoi(n_proc);
+	return n_proc;
 }
 
 // TODO: Read and return the command associated with a process
