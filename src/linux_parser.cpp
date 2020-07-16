@@ -78,7 +78,20 @@ LinuxParser::Pids()
 float
 LinuxParser::MemoryUtilization()
 {
-	return 0.0;
+	string memory;
+	float n_memory, total_memory, memory_free;
+	string line;
+	std::ifstream stream(kProcDirectory + kMeminfoFilename);
+	if (stream.is_open()) {
+		std::getline(stream, line);
+		std::istringstream linestream(line);
+		linestream >> memory >> n_memory;
+		if (memory == "MemTotal:")
+			total_memory = n_memory;
+		if (memory == "MemFree:")
+			memory_free = n_memory;
+	}
+	return (total_memory - memory_free) / total_memory ;
 }
 
 // DONE: Read and return the system uptime

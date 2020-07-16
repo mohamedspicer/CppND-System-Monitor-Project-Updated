@@ -39,7 +39,7 @@ System::Kernel()
 float
 System::MemoryUtilization()
 {
-	return 0.0;
+	return LinuxParser::MemoryUtilization();
 }
 
 // TODO: Return the operating system name
