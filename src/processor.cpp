@@ -43,5 +43,6 @@ Processor::Utilization()
 	long totald			= Total - PrevTotal;
 	long idled			= Idle - PrevIdle;
 	long CPU_Percentage = (totald - idled) / totald;
+	std::cout << CPU_Percentage << "\n";
 	return CPU_Percentage;
 }
