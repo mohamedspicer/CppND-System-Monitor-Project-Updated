@@ -17,6 +17,6 @@ Format::ElapsedTime(long seconds [[maybe_unused]])
 	m		 = seconds / 60;
 	seconds	 = seconds % 60;
 	s		 = seconds;
-	string s = str(format("%2% %2% %1%\n") % "world" % "hello");
-	return s;
+	string ss = str(format("%2% %2% %1%\n") % "world" % "hello");
+	return ss;
 }
