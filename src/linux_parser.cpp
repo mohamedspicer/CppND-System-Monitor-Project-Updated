@@ -80,7 +80,7 @@ float
 LinuxParser::MemoryUtilization()
 {
 	string memory;
-	float n_memory, total_memory, memory_free;
+	double n_memory, total_memory, memory_free;
 	string line;
 	std::ifstream stream(kProcDirectory + kMeminfoFilename);
 	if (stream.is_open()) {
@@ -156,11 +156,12 @@ LinuxParser::TotalProcesses()
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
-		std::getline(stream, line);
-		std::istringstream linestream(line);
-		linestream >> total_process >> n_proc;
-		if (total_process == "processes")
-			return n_proc;
+		while (std::getline(stream, line)){
+			std::istringstream linestream(line);
+			linestream >> total_process >> n_proc;
+			if (total_process == "processes")
+				return n_proc;
+		}
 	}
 	return n_proc;
 }
@@ -174,11 +175,12 @@ LinuxParser::RunningProcesses()
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
-		std::getline(stream, line);
-		std::istringstream linestream(line);
-		linestream >> proc_running >> n_proc;
-		if (proc_running == "procs_running")
-			return n_proc;
+		while (std::getline(stream, line)){
+			std::istringstream linestream(line);
+			linestream >> total_process >> n_proc;
+			if (total_process == "procs_running")
+				return n_proc;
+		}
 	}
 	return n_proc;
 }
