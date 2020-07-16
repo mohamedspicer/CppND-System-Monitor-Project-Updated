@@ -12,10 +12,10 @@ Processor::Utilization()
 {
 	string cpu, prevcpu;
 	string line;
-	long user, nice, system, idle, iowait, irq, softirq, steal, guest,
+	double user, nice, system, idle, iowait, irq, softirq, steal, guest,
 	  guest_nice;
 
-	long prevuser, prevnice, prevsystem, previdle, previowait, previrq,
+	double prevuser, prevnice, prevsystem, previdle, previowait, previrq,
 	  prevsoftirq, prevsteal, prevguest, prevguest_nice;
 	std::ifstream stream(LinuxParser::kProcDirectory +
 						 LinuxParser::kStatFilename);
@@ -34,16 +34,16 @@ Processor::Utilization()
 		linestream >> cpu >> user >> nice >> system >> idle >> iowait >> irq >>
 		  softirq >> steal >> guest >> guest_nice;
 	}
-	long PrevIdle = previdle + previowait;
-	long Idle	  = idle + iowait;
-	long PrevNonIdle =
+	double PrevIdle = previdle + previowait;
+	double Idle	  = idle + iowait;
+	double PrevNonIdle =
 	  prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal;
-	long NonIdle		= user + nice + system + irq + softirq + steal;
-	long PrevTotal		= PrevIdle + PrevNonIdle;
-	long Total			= Idle + NonIdle;
-	long totald			= Total - PrevTotal;
-	long idled			= Idle - PrevIdle;
-	long CPU_Percentage = (totald - idled) / totald;
+	double NonIdle		= user + nice + system + irq + softirq + steal;
+	double PrevTotal		= PrevIdle + PrevNonIdle;
+	double Total			= Idle + NonIdle;
+	double totald			= Total - PrevTotal;
+	double idled			= Idle - PrevIdle;
+	double CPU_Percentage = (totald - idled) / totald;
 	std::cout << CPU_Percentage << "\n";
 	return CPU_Percentage;
 }
