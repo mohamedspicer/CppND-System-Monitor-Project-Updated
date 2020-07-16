@@ -7,6 +7,7 @@
 #include "process.h"
 #include "processor.h"
 #include "system.h"
+#include "linux_parser.h"
 
 using std::set;
 using std::size_t;
@@ -45,7 +46,7 @@ System::MemoryUtilization()
 std::string
 System::OperatingSystem()
 {
-	return string();
+	return LinuxParser::OperatingSystem();
 }
 
 // TODO: Return the number of processes actively running on the system
