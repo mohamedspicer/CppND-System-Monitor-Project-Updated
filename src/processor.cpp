@@ -27,7 +27,8 @@ Processor::Utilization()
 	}
 	stream.close();
 	usleep(5000);
-	stream.open()
+	stream.open(LinuxParser::kProcDirectory +
+						 LinuxParser::kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
