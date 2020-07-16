@@ -15,21 +15,20 @@ Processor::Utilization()
 	long user, nice, system, idle, iowait, irq, softirq, steal, guest,
 	  guest_nice;
 
-	long prevuser, prevnice, prevsystem, previdle, previowait, previrq, prevsoftirq, prevsteal, prevguest,
-	  prevguest_nice;
+	long prevuser, prevnice, prevsystem, previdle, previowait, previrq,
+	  prevsoftirq, prevsteal, prevguest, prevguest_nice;
 	std::ifstream stream(LinuxParser::kProcDirectory +
 						 LinuxParser::kStatFilename);
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> prevcpu >> prevuser >> prevnice >> prevsystem >> previdle >> previowait >> previrq >>
-		  prevsoftirq >> prevsteal >> prevguest >> prevguest_nice;
+		linestream >> prevcpu >> prevuser >> prevnice >> prevsystem >>
+		  previdle >> previowait >> previrq >> prevsoftirq >> prevsteal >>
+		  prevguest >> prevguest_nice;
 	}
 	stream.close();
 	usleep(5000);
-	stream.open(LinuxParser::kProcDirectory +
-						 LinuxParser::kStatFilename);
-	if (stream.is_open()) {
+	if (stream.open(LinuxParser::kProcDirectory + LinuxParser::kStatFilename)) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
 		linestream >> cpu >> user >> nice >> system >> idle >> iowait >> irq >>
