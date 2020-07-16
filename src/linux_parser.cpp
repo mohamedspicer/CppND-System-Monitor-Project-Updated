@@ -10,6 +10,7 @@ using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
+using std::stoi;
 
 // DONE: An example of how to read data from the filesystem
 string
@@ -84,7 +85,15 @@ LinuxParser::MemoryUtilization()
 long
 LinuxParser::UpTime()
 {
-	return 0;
+	string uptime, uptime_idle;
+	string line;
+	std::ifstream stream(kProcDirectory + kUptimeFilename);
+	if (stream.is_open()) {
+		std::getline(stream, line);
+		std::istringstream linestream(line);
+		linestream >> uptime >> uptime_idle ;
+	}
+	return stoi(uptime);
 }
 
 // TODO: Read and return the number of jiffies for the system
