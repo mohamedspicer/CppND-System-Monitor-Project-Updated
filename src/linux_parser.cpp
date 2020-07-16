@@ -1,6 +1,6 @@
 #include <dirent.h>
-#include <unistd.h>
 #include <iostream>
+#include <unistd.h>
 
 #include <string>
 #include <vector>
@@ -84,15 +84,15 @@ LinuxParser::MemoryUtilization()
 	string line;
 	std::ifstream stream(kProcDirectory + kMeminfoFilename);
 	if (stream.is_open()) {
-		std::getline(stream, line);
-		std::istringstream linestream(line);
-		linestream >> memory >> n_memory;
-		if (memory == "MemTotal:")
-			total_memory = n_memory;
-		if (memory == "MemFree:")
-			memory_free = n_memory;
+		while (std::getline(stream, line)) {
+			std::istringstream linestream(line);
+			linestream >> memory >> n_memory;
+			if (memory == "MemTotal:")
+				total_memory = n_memory;
+			if (memory == "MemFree:")
+				memory_free = n_memory;
+		}
 	}
-	std::cout << total_memory << memory_free << "\n";
 	return ((total_memory - memory_free) / total_memory);
 }
 
@@ -156,7 +156,7 @@ LinuxParser::TotalProcesses()
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
-		while (std::getline(stream, line)){
+		while (std::getline(stream, line)) {
 			std::istringstream linestream(line);
 			linestream >> total_process >> n_proc;
 			if (total_process == "processes")
@@ -175,7 +175,7 @@ LinuxParser::RunningProcesses()
 	string line;
 	std::ifstream stream(kProcDirectory + kStatFilename);
 	if (stream.is_open()) {
-		while (std::getline(stream, line)){
+		while (std::getline(stream, line)) {
 			std::istringstream linestream(line);
 			linestream >> proc_running >> n_proc;
 			if (proc_running == "procs_running")
