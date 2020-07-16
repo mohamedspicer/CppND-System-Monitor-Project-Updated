@@ -91,7 +91,7 @@ LinuxParser::MemoryUtilization()
 		if (memory == "MemFree:")
 			memory_free = n_memory;
 	}
-	return ((total_memory - memory_free) / total_memory) * 100 ;
+	return ((total_memory - memory_free) / total_memory);
 }
 
 // DONE: Read and return the system uptime
