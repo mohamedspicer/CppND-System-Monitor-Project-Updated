@@ -143,9 +143,9 @@ LinuxParser::TotalProcesses()
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> total_process;
+		linestream >> total_process >> n_proc;
 		if (total_process == "processes")
-			linestream >> n_proc;
+			return n_proc;
 	}
 	return n_proc;
 }
@@ -161,9 +161,9 @@ LinuxParser::RunningProcesses()
 	if (stream.is_open()) {
 		std::getline(stream, line);
 		std::istringstream linestream(line);
-		linestream >> proc_running;
+		linestream >> proc_running >> n_proc;
 		if (proc_running == "procs_running")
-			linestream >> n_proc;
+			return n_proc;
 	}
 	return n_proc;
 }
