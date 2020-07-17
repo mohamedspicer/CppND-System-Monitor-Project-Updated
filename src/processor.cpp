@@ -51,5 +51,6 @@ Processor::Utilization()
 		prevguest << prevguest_nice << "\n";
 	std::cout << cpu << user << nice << system << idle << iowait << irq <<
 		softirq << steal << guest << guest_nice << "\n";
+	std::cout << CPU_Percentage << "\n";
 	return CPU_Percentage;
 }
