@@ -10,7 +10,7 @@
 using std::string;
 using std::to_string;
 using std::vector;
-using std::stol
+using std::stol;
 
 // TODO: Return this process's ID
 int
