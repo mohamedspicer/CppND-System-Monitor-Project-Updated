@@ -7,10 +7,10 @@
 #include "process.h"
 #include <linux_parser.h>
 
+using std::stol;
 using std::string;
 using std::to_string;
 using std::vector;
-using std::stol;
 
 // TODO: Return this process's ID
 int
@@ -30,14 +30,14 @@ Process::CpuUtilization()
 string
 Process::Command()
 {
-	return LinuxParser::Command(Process::pid);
+	return LinuxParser::Command(Process::Pid());
 }
 
 // TODO: Return this process's memory utilization
 string
 Process::Ram()
 {
-	auto vmsize = LinuxParser::Ram(Process::pid);
+	auto vmsize	 = LinuxParser::Ram(Process::Pid());
 	Process::ram = stol(vmsize);
 	return vmsize;
 }
@@ -51,20 +51,20 @@ Process::RamLast() const
 string
 Process::User()
 {
-	return LinuxParser::User(Process::pid);
+	return LinuxParser::User(Process::Pid());
 }
 
 // TODO: Return the age of this process (in seconds)
-long int
+long 
 Process::UpTime()
 {
-	return LinuxParser::UpTime(Process::pid);
+	return LinuxParser::UpTime(Process::Pid());
 }
 
 // DONE: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
 bool
-Process::operator<(Process const &a) const 
+Process::operator<(Process const& a) const
 {
 	return RamLast() > a.RamLast();
 }
