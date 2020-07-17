@@ -71,7 +71,7 @@ System::TotalProcesses()
 }
 
 // DONE: Return the number of seconds since the system started running
-long int
+long
 System::UpTime()
 {
 	return LinuxParser::UpTime();
