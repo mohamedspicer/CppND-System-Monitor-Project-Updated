@@ -35,6 +35,12 @@ Processor::Utilization()
 		linestream >> cpu >> user >> nice >> system >> idle >> iowait >> irq >>
 		  softirq >> steal >> guest >> guest_nice;
 	}
+	std::cout << prevcpu << prevuser << prevnice << prevsystem <<
+		previdle << previowait << previrq << prevsoftirq << prevsteal <<
+		prevguest << prevguest_nice << "\n";
+	std::cout << cpu << user << nice << system << idle << iowait << irq <<
+		softirq << steal << guest << guest_nice << "\n";
+
 	double PrevIdle = previdle + previowait;
 	double Idle		= idle + iowait;
 	double PrevNonIdle =
