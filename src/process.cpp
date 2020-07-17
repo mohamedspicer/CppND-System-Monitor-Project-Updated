@@ -57,7 +57,7 @@ Process::UpTime()
 // DONE: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
 bool
-Process::operator<(Process &a) const
+Process::operator<(Process &a)
 {
 	return stol(Ram()) > stol(a.Ram());
 }
