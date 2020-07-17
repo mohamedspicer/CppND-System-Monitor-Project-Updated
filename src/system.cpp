@@ -25,7 +25,12 @@ System::Cpu()
 vector<Process>&
 System::Processes()
 {
-	return processes_;
+	vector<Process> process;
+	int i = 0;
+	for(auto pid: LinuxParser::Pids()) {
+		process[i].pid = pid;
+	}
+	return process;
 }
 
 // DONE: Return the system's kernel identifier (string)

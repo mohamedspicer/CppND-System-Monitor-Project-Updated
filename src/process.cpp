@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "process.h"
+#include <linux_parser.h>
 
 using std::string;
 using std::to_string;
@@ -14,7 +15,7 @@ using std::vector;
 int
 Process::Pid()
 {
-	return 0;
+	return Process::pid;
 }
 
 // TODO: Return this process's CPU utilization
@@ -28,28 +29,28 @@ Process::CpuUtilization()
 string
 Process::Command()
 {
-	return string();
+	return LinuxParser::Command(Process::pid);
 }
 
 // TODO: Return this process's memory utilization
 string
 Process::Ram()
 {
-	return string();
+	return LinuxParser::Ram(Process::pid);
 }
 
 // TODO: Return the user (name) that generated this process
 string
 Process::User()
 {
-	return string();
+	return LinuxParser::User(Process::pid);
 }
 
 // TODO: Return the age of this process (in seconds)
 long int
 Process::UpTime()
 {
-	return 0;
+	return LinuxParser::UpTime(Process::pid);
 }
 
 // TODO: Overload the "less than" comparison operator for Process objects

@@ -6,7 +6,7 @@
 #include "processor.h"
 using std::string;
 
-// TODO: Return the aggregate CPU utilization
+// DONE: Return the aggregate CPU utilization
 float
 Processor::Utilization()
 {
@@ -46,11 +46,11 @@ Processor::Utilization()
 	double totald		  = Total - PrevTotal;
 	double idled		  = Idle - PrevIdle;
 	double CPU_Percentage = (totald - idled) / totald;
-	std::cout << prevcpu << prevuser << prevnice << prevsystem <<
-		previdle << previowait << previrq << prevsoftirq << prevsteal <<
-		prevguest << prevguest_nice << "\n";
-	std::cout << cpu << user << nice << system << idle << iowait << irq <<
-		softirq << steal << guest << guest_nice << "\n";
-	std::cout << CPU_Percentage << "\n";
+	// std::cout << prevcpu << prevuser << prevnice << prevsystem <<
+	// 	previdle << previowait << previrq << prevsoftirq << prevsteal <<
+	// 	prevguest << prevguest_nice << "\n";
+	// std::cout << cpu << user << nice << system << idle << iowait << irq <<
+	// 	softirq << steal << guest << guest_nice << "\n";
+	// std::cout << CPU_Percentage << "\n";
 	return CPU_Percentage;
 }
