@@ -3,6 +3,7 @@
 #include <string>
 #include <unistd.h>
 #include <vector>
+#include <algorithm>
 
 #include "process.h"
 #include "processor.h"
@@ -25,13 +26,14 @@ System::Cpu()
 vector<Process>&
 System::Processes()
 {
-	vector<Process> process;
 	int i = 0;
 	for(auto pid: LinuxParser::Pids()) {
-		process[i].pid = pid;
-		i++;
+		Process p;
+		p.pid = pid;
+		processes_.push_back(p);
 	}
-	return process;
+	std::sort(processes_.begin(), processes_.end());
+	return processes_;
 }
 
 // DONE: Return the system's kernel identifier (string)

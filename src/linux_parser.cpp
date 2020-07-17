@@ -191,12 +191,11 @@ string
 LinuxParser::Command(int pid)
 {
 	string cmdline;
-	string line;
 	std::ifstream stream(kProcDirectory + to_string(pid) + kCmdlineFilename);
 	if (stream.is_open()) {
-		std::getline(stream, line);
+		std::getline(stream, cmdline);
 	}
-	return line;
+	return cmdline;
 }
 // DONE: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
@@ -212,10 +211,10 @@ LinuxParser::Ram(int pid)
 			std::istringstream linestream(line);
 			linestream >> vmsize >> n_vmsize;
 			if (vmsize == "VmSize:")
-				return to_string(stol(n_vmsize) * 0.001);
+				return to_string(stol(n_vmsize) / 1000);
 		}
 	}
-	return to_string(stol(n_vmsize) * 0.001);
+	return to_string(stol(n_vmsize) / 1000);
 }
 
 // DONE: Read and return the user ID associated with a process
@@ -223,8 +222,7 @@ LinuxParser::Ram(int pid)
 string
 LinuxParser::Uid(int pid)
 {
-	string uid;
-	int n_uid;
+	string uid, n_uid;
 	string line;
 	std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
 	if (stream.is_open()) {
@@ -232,10 +230,10 @@ LinuxParser::Uid(int pid)
 			std::istringstream linestream(line);
 			linestream >> uid >> n_uid;
 			if (uid == "Uid:")
-				return to_string(n_uid);
+				return n_uid;
 		}
 	}
-	return to_string(n_uid);
+	return n_uid;
 }
 
 // DONE: Read and return the user associated with a process
