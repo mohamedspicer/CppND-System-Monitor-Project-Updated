@@ -37,7 +37,14 @@ Process::Command()
 string
 Process::Ram()
 {
-	return LinuxParser::Ram(Process::pid);
+	auto vmsize = LinuxParser::Ram(Process::pid);
+	Process::ram = stol(vmsize);
+	return vmsize;
+}
+long
+Process::RamLast() const
+{
+	return Process::ram;
 }
 
 // TODO: Return the user (name) that generated this process
@@ -57,7 +64,7 @@ Process::UpTime()
 // DONE: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
 bool
-Process::operator<(Process &a)
+Process::operator<(Process const &a) const 
 {
-	return stol(Ram()) > stol(a.Ram());
+	return RamLast() > a.RamLast();
 }
