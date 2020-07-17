@@ -26,7 +26,6 @@ System::Cpu()
 vector<Process>&
 System::Processes()
 {
-	int i = 0;
 	for(auto pid: LinuxParser::Pids()) {
 		Process p;
 		p.pid = pid;
