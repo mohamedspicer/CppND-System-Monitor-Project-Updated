@@ -59,5 +59,5 @@ Process::UpTime()
 bool
 Process::operator<(Process &a) const
 {
-	return stol(Ram()) > stol(a.Ram())
+	return stol(Ram()) > stol(a.Ram());
 }
