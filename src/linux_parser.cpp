@@ -274,7 +274,7 @@ LinuxParser::UpTime(int pid)
 		int i = 0;
 		do {
 			linestream >> uptime;
-			i += 1;
+			i++;
 		} while (i != 22);
 	}
 	return stol(uptime) / sysconf(_SC_CLK_TCK);

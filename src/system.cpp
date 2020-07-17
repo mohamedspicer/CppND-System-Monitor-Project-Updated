@@ -29,6 +29,7 @@ System::Processes()
 	int i = 0;
 	for(auto pid: LinuxParser::Pids()) {
 		process[i].pid = pid;
+		i++;
 	}
 	return process;
 }
